@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h3 class="pb-4 border-bottom">Django Lesson</h3>
+            {% for obj in page_obj %}
+                <div class="blog-post">
+                    <a href="/article/{{ obj.id }}">
+                        <h2 class="blog-post-title">{{ obj.title }}</h2>
+                    </a>
+                    <p class="blog-post-meta">{{ obj.created_at }} by 
+                        <a href="#">{{ obj.author }}</a>
+                    </p>
+                    <p>{{ obj.text }}</p>
+                </div>
+            {% endfor %}
+            {% include 'blog/snippets/pagination.html' %}
+        </div>
+        {% include 'blog/snippets/sidebar.html' %} 
+    </div>
+</main>
+{% endblock %}
